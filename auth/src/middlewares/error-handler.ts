@@ -9,17 +9,11 @@ export function errorHandler(
   _next: NextFunction
 ) {
   if (err instanceof RequestValidationError) {
-    const formattedErrs = err.errors.map((error) => {
-      return {
-        message: error.msg,
-        field: error.param,
-      };
-    });
-    return res.status(400).json({ errors: formattedErrs });
+    return res.status(err.statusCode).json(err.serializeErrors());
   }
 
   if (err instanceof DatabaseConnectionError) {
-    return res.status(500).json({ errors: [{ message: err.reason }] });
+    return res.status(err.statusCode).json(err.serializeErrors());
   }
 
   res.status(500).json({
