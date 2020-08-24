@@ -1,17 +1,19 @@
-apiVersion: skaffold/2alpha3
+apiVersion: skaffold/v2alpha3
 kind: Config
 deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: ticket-share
   artifacts:
-    - image: fgyimah/auth
+    - image: gcr.io/ticket-share/auth
       context: auth
       docker:
-        dockerfile: dockerfile
+        dockerfile: Dockerfile
       sync:
         manual:
           - src: "src/**/*.ts"
