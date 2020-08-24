@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: gcr.io/ticket-share/auth
+          image: fgyimah/ticket-share/auth
 ---
 apiVersion: v1
 kind: Service

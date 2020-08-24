@@ -5,12 +5,12 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: ticket-share
+  local:
+    push: false
+  # googleCloudBuild:
+  #   projectId: ticket-share
   artifacts:
-    - image: gcr.io/ticket-share/auth
+    - image: fgyimah/ticket-share/auth
       context: auth
       docker:
         dockerfile: Dockerfile
