@@ -23,6 +23,6 @@ export function errorHandler(
   }
 
   res.status(500).json({
-    message: 'Something went wrong....',
+    errors: [{ message: 'Something went wrong...' }],
   });
 }
